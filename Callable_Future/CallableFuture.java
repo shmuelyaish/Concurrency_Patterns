@@ -9,9 +9,15 @@ public class CallableFuture {
     public static void main(String[] args) {
         ExecutorService execute = Executors.newFixedThreadPool(2);
         Future<String> f = execute.submit(new MyCallable());
+        Future<String> g = execute.submit(()->{
+            for(int i = 0; i <12; i++)
+            System.out.println("hi");
+            return "boogey";
+        });
         System.out.println("1");
         try {
             System.out.println(f.get());
+            System.out.println(g.get());
         } catch (InterruptedException | ExecutionException e) {
             System.out.println("ERROR 2");
         }
